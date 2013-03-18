@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  title: MyString
+  code: MyString
+  tottime: 1
+  altid: 1
+  division_id: 1
+  creation: 2013-03-16 14:04:25
+  admin: 
+
+two:
+  name: MyString
+  title: MyString
+  code: MyString
+  tottime: 1
+  altid: 1
+  division_id: 1
+  creation: 2013-03-16 14:04:25
+  admin: 

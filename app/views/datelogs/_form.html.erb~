@@ -1,0 +1,28 @@
+<% @datelog.timelogs.build %>
+<%= form_for([@employee, @datelog]) do |f| %>
+  <% if @datelog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@datelog.errors.count, "error") %> prohibited this datelog from being saved:</h2>
+
+      <ul>
+      <% @datelog.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :daylog, "Date" %><br />
+    <%= f.date_select :daylog %>
+  </div>
+
+  <h2>Timelog</h2>
+  <%= render :partial => 'timelogs/form' %>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type: 
+  altcatid: 1
+  hourlog: 1
+  description: MyString
+  datelog: 
+
+two:
+  type: 
+  altcatid: 1
+  hourlog: 1
+  description: MyString
+  datelog: 

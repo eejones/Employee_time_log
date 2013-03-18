@@ -1,0 +1,78 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Title</th>
+    <th>Code</th>
+    <th>Tottime</th>
+    <th>Altid</th>
+    <th>Division</th>
+    <th>Creation</th>
+    <th>Admin</th>
+  </tr>
+
+  <tr>
+    <td><%= @employee.name %></td>
+    <td><%= @employee.title %></td>
+    <td><%= @employee.code %></td>
+    <td><%= @employee.tottime %></td>
+    <td><%= @employee.altid %></td>
+    <td><%= @employee.division_id %></td>
+    <td><%= @employee.creation %></td>
+    <td><%= @employee.admin %></td>
+  </tr>
+
+</table>
+
+<p>
+  <b>Name:</b>
+  <%= @employee.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @employee.title %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @employee.code %>
+</p>
+
+<p>
+  <b>Tottime:</b>
+  <%= @employee.tottime %>
+</p>
+
+<p>
+  <b>Altid:</b>
+  <%= @employee.altid %>
+</p>
+
+<p>
+  <b>Division:</b>
+  <%= @employee.division_id %>
+</p>
+
+<p>
+  <b>Creation:</b>
+  <%= @employee.creation %>
+</p>
+
+<p>
+  <b>Admin:</b>
+  <%= @employee.admin %>
+</p>
+
+<h2>Time Logged by Date</h2>
+<%= render @employee.datelogs %>
+
+
+<%= link_to 'Add New Datelog', new_employee_datelog_path(@employee,@datelog) %>
+
+<br />
+
+<%= link_to 'View Datelog Index', employee_datelog_path(@employee,@datelog) %>
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %> |

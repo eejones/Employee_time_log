@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  daylog: 2013-03-16
+  tottime: 1
+  altnumeric: 1
+  employee: 
+
+two:
+  daylog: 2013-03-16
+  tottime: 1
+  altnumeric: 1
+  employee: 

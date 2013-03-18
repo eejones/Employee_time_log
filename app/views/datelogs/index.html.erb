@@ -1,0 +1,22 @@
+<h1>Listing datelogs</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+
+
+<% @datelogs.each do |datelog| %>
+<%= render datelog.timelogs %>
+  <tr>
+    <td><%= datelog.daylog %></td>
+    <td><%= link_to 'Edit Datelog', edit_employee_datelog_path(:employee, :datelog) %></td>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back to Employee', employee_path(@employee) %>

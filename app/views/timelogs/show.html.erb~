@@ -1,0 +1,12 @@
+  <tr>
+    <th>Date</th>
+  </tr>
+
+  <tr>
+    <td><%= @datelog.daylog %></td>
+  </tr>
+  <tr>
+    <td><%= @datelog.employee_id %></td>
+  </tr>
+
+
