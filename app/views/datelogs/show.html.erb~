@@ -17,7 +17,7 @@
 <% render @datelog.timelogs %>
 
 <h2>Log for a particular date:</h2>
-<%= form_for([@employee, @datelog.timelog.build], :url =>employee_datelog_path) do |f| %>
+<%= form_for([@employee, @datelog.timelogs.build], :url =>employee_datelogs_path) do |f| %>
   <div class="field">
     <%= f.label :type %>
     <%= f.select :type, [['General Development',1], ['Dev Review',2], ['General','General'], ['Travel','Travel'], ['Meeting','Meeting'], ['Billable Customer Dev','Billable Customer Dev'],['Debugging','Debugging'], ['Lunch','Lunch'], ["'Honestly I don't know'","'Honestly I don't know'"], ['Reddit','Reddit']] %><br />

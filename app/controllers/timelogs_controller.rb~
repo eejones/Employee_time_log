@@ -17,7 +17,9 @@ def create
   @datelog=Datelog.find(params[:datelog_id])
   @employee=@datelog(params[:employee_id])
   @timelog = @datelog.timelogs.create(params[:timelog])
-    if @timelog.save
+  @timelog.datelog_id=:datelog_id
+  @timelog.employee_id=:employee_id
+  if @timelog.save
       redirect_to @employee
     else
       render "new"

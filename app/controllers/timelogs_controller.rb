@@ -16,7 +16,7 @@ before_filter :get_employee_and_datelog
 def create
   @datelog=Datelog.find(params[:datelog_id])
   @employee=@datelog(params[:employee_id])
-  @timelog = @datelog.timelogs.create(params[:timelog])
+  @timelog = @employee.datelog.timelogs.create(params[:timelog])
   @timelog.datelog_id=:datelog_id
   @timelog.employee_id=:employee_id
   if @timelog.save
