@@ -1,7 +1,7 @@
 <%= form_for([@employee, @datelog, @datelog.timelogs.build]) do |f| %>
   <div class="field">
     <%= f.label :type %>
-    <%= f.select :type, [['General Development',1], ['Dev Review',2], ['General','General'], ['Travel','Travel'], ['Meeting','Meeting'], ['Billable Customer Dev','Billable Customer Dev'],['Debugging','Debugging'], ['Lunch','Lunch'], ["'Honestly I don't know'","'Honestly I don't know'"], ['Reddit','Reddit']] %><br />
+    <%= f.select :type, [['General Development','"General Dev'], ['Dev Review','Dev Review'], ['General','General'], ['Travel','Travel'], ['Meeting','Meeting'], ['Billable Customer Dev','Billable Customer Dev'],['Debugging','Debugging'], ['Lunch','Lunch'], ["'Honestly I don't know'","'Honestly I don't know'"], ['Reddit','Reddit']] %><br />
   </div>
 
   <div class="field">

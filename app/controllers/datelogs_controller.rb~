@@ -32,8 +32,6 @@ class DatelogsController < ApplicationController
     end
   end
 
-
-
   def index
     @employee = Employee.find(params[:employee_id])
     @datelogs = @employee.datelogs.all
@@ -44,17 +42,19 @@ class DatelogsController < ApplicationController
   end
 
   def show
-    @employee = Employee.find(params[:employee_id])
-    @datelog = @employee.datelogs(params[:datelog])
-
+    @datelog = Datelog.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @datelog }
     end
   end
-
   def edit
     @datelog = Datelog.find(params[:id])
   end
 
+ def destroy
+    @employee = Employee.find(params[:employee_id])
+    @datelog = Datelog.find(params[:id])
+    @datelog.destroy
+    redirect_to employee_path(@employee)   
 end

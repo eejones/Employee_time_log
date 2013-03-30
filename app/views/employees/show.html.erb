@@ -1,69 +1,50 @@
 <p id="notice"><%= notice %></p>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Title</th>
-    <th>Code</th>
-    <th>Tottime</th>
-    <th>Altid</th>
-    <th>Division</th>
-    <th>Creation</th>
-    <th>Admin</th>
-  </tr>
 
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Title</th>
+    <th></th>
+    <th align="left">Code</th>
+    <th></th>
+    <th align="left">Total Time</th>
+    <th></th>
+    <th align="left">Altid</th>
+    <th align="left">Division</th>
+    <th align="left">Creation</th>
+    <th align="left">Admin</th>
+    <th></th>
+<COLGROUP>
+   <COL width="100">
+   <COL width="50">
+   <COL width="25">
+   <COL width="40">
+   <COL width="25">
+   <COL width="40">
+   <COL width="25">
+   <COL width="50">
+   <COL width="100">
+   <COL width="200">
+   <COL width="75">
+   <COL width="100">
   <tr>
     <td><%= @employee.name %></td>
     <td><%= @employee.title %></td>
+    <td></td>
     <td><%= @employee.code %></td>
+    <td></td>
     <td><%= @employee.tottime %></td>
+    <td></td>
     <td><%= @employee.altid %></td>
     <td><%= @employee.division_id %></td>
     <td><%= @employee.creation %></td>
     <td><%= @employee.admin %></td>
+    <td><%= link_to 'Edit Employee', edit_employee_path(@employee) %></td>
   </tr>
-
 </table>
 
-<p>
-  <b>Name:</b>
-  <%= @employee.name %>
-</p>
 
-<p>
-  <b>Title:</b>
-  <%= @employee.title %>
-</p>
-
-<p>
-  <b>Code:</b>
-  <%= @employee.code %>
-</p>
-
-<p>
-  <b>Tottime:</b>
-  <%= @employee.tottime %>
-</p>
-
-<p>
-  <b>Altid:</b>
-  <%= @employee.altid %>
-</p>
-
-<p>
-  <b>Division:</b>
-  <%= @employee.division_id %>
-</p>
-
-<p>
-  <b>Creation:</b>
-  <%= @employee.creation %>
-</p>
-
-<p>
-  <b>Admin:</b>
-  <%= @employee.admin %>
-</p>
 
 <h2>Time Logged by Date</h2>
 <%= render @employee.datelogs %>

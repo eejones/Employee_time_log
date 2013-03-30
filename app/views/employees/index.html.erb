@@ -1,26 +1,46 @@
 <h1>Listing employees</h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Title</th>
-    <th>Code</th>
-    <th>Tottime</th>
-    <th>Altid</th>
-    <th>Division</th>
-    <th>Creation</th>
-    <th>Admin</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
+  <tr>
+    <th align="left">Name</th>
+    <th align="left">Title</th>
+    <th></th>
+    <th align="left">Code</th>
+    <th></th>
+    <th align="left">Tot Time</th>
+    <th></th>
+    <th align="left">Altid</th>
+    <th align="left">Division</th>
+    <th align="left">Creation</th>
+    <th align="left">Admin</th>
+    <th></th>
+    <th></th>
+    <th></th>
+<COLGROUP>
+   <COL width="100">
+   <COL width="50">
+   <COL width="25">
+   <COL width="40">
+   <COL width="25">
+   <COL width="40">
+   <COL width="25">
+   <COL width="50">
+   <COL width="100">
+   <COL width="100">
+   <COL width="50">
+   <COL width="0*">
+   <COL width="0*">
+   <COL width="0*">
 <% @employees.each do |employee| %>
   <tr>
     <td><%= employee.name %></td>
     <td><%= employee.title %></td>
+    <td></td>
     <td><%= employee.code %></td>
+    <td></td>
     <td><%= employee.tottime %></td>
+    <td></td>
     <td><%= employee.altid %></td>
     <td><%= employee.division_id %></td>
     <td><%= employee.creation %></td>

@@ -32,8 +32,6 @@ class DatelogsController < ApplicationController
     end
   end
 
-
-
   def index
     @employee = Employee.find(params[:employee_id])
     @datelogs = @employee.datelogs.all
@@ -54,4 +52,11 @@ class DatelogsController < ApplicationController
     @datelog = Datelog.find(params[:id])
   end
 
+ def destroy
+    @employee = Employee.find(params[:employee_id])
+    @datelog = Datelog.find(params[:id])
+    @datelog.destroy
+    redirect_to employee_path(@employee)
+ end
+   
 end
