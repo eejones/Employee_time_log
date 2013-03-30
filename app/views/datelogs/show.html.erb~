@@ -1,36 +1,7 @@
-<table>
-  <tr>
-    <th>Date</th>
-  </tr>
+<h1><%= @datelog.daylog %></h1>
+ <h2>Time Logged by Date</h2>
 
-  <tr>
-    <td><%= @datelog.daylog %></td>
-  </tr>
-  <tr>
-    <td><%= @datelog.employee_id %></td>
-  </tr>
-
-
-</table>
-
-<h2>Time Logged by Date</h2>
-<% render @datelog.timelogs %>
-
-<h2>Log for a particular date:</h2>
-<%= form_for([@employee, @datelog.timelogs.build], :url =>employee_datelogs_path) do |f| %>
-  <div class="field">
-    <%= f.label :type %>
-    <%= f.select :type, [['General Development',1], ['Dev Review',2], ['General','General'], ['Travel','Travel'], ['Meeting','Meeting'], ['Billable Customer Dev','Billable Customer Dev'],['Debugging','Debugging'], ['Lunch','Lunch'], ["'Honestly I don't know'","'Honestly I don't know'"], ['Reddit','Reddit']] %><br />
-  </div>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= render @datelog.timelogs %>
 
 <br />
 

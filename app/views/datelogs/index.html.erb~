@@ -10,7 +10,7 @@
 
 
 <% @datelogs.each do |datelog| %>
-<%= render @datelog.timelogs %>
+<%= render datelog.timelogs %>
   <tr>
     <td><%= datelog.daylog %></td>
     <td><%= link_to 'Edit Datelog', edit_employee_datelog_path(:employee, :datelog) %></td>

@@ -1,7 +1,6 @@
 class TimelogsController < ApplicationController
 
-before_filter :get_employee_and_datelog
-
+  before_filter :get_employee_and_datelog
 #def new
 #    @employee = Employee.find(params[:employee_id])
 #    @datelog = @employee.datelogs(params[:datelog_id])
@@ -13,34 +12,38 @@ before_filter :get_employee_and_datelog
 #    end
 #  end
 
-def create
-  @datelog=Datelog.find(params[:datelog_id])
-  @employee=@datelog(params[:employee_id])
-  @timelog = @employee.datelog.timelogs.create(params[:timelog])
-  @timelog.datelog_id=:datelog_id
-  @timelog.employee_id=:employee_id
-  if @timelog.save
-      redirect_to @employee
-    else
-      render "new"
-    end
+
+
+  def new
+    @timelog = @datelog.timelogs.build
   end
 
-def show
-    @timelog = Timelog.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @timelog }
-    end
-end
+  def create
+    @timelog = @datelog.timelogs.create(params[:timelog])
 
-def destroy
-    @datelog = Datelog.find(params[:datelog_id])
-    @timelog = @datelog.timelogs.find(params[:id])
-    @timelog.destroy
-    redirect_to employee_datelog_path(@employee, @datelog)
+    if @timelog.save
+      redirect_to employee_datelog_path(@employee, @datelog)
+    else
+       render "new"
+     end
+   end
+ 
+  def show
+     @timelog = Timelog.find(params[:id])
+     respond_to do |format|
+       format.html # show.html.erb
+       format.json { render :json => @timelog }
+     end
+  end
+ 
+  def destroy
+     @datelog = Datelog.find(params[:datelog_id])
+     @timelog = @datelog.timelogs.find(params[:id])
+     @timelog.destroy
+     redirect_to employee_datelog_path(@employee, @datelog)
+  end
 
- def get_employee_and_datelog
+  def get_employee_and_datelog
     @employee = Employee.find(params[:employee_id])
     @datelog = @employee.datelogs.find(params[:datelog_id])
   end
