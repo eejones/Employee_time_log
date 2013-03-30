@@ -39,7 +39,7 @@
     <td></td>
     <td><%= employee.code %></td>
     <td></td>
-    <td><%= employee.tottime %></td>
+    <td><%= employee.timelogs.sum('hourlog') %></td>
     <td></td>
     <td><%= employee.altid %></td>
     <td><%= employee.division_id %></td>
