@@ -1,4 +1,3 @@
-<% @datelog.timelogs.build %>
 <%= form_for([:employee, @datelog]) do |f| %>
   <% if @datelog.errors.any? %>
     <div id="error_explanation">
@@ -17,9 +16,13 @@
     <%= f.date_select :daylog %>
   </div>
 
-  <h2>Timelog</h2>
-  <%= render :partial => 'timelogs/form' %>
+  <h2>Timelogs</h2>
 
+  <%= render @datelog.timelogs %>
+ 
+  <%- if @datelog.persisted? %>
+    <%= link_to 'Add Timelog', new_employee_datelog_timelog_url(@datelog.employee, @datelog) %>
+  <%- end %>
 
 
   <div class="actions">

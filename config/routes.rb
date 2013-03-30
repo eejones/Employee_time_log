@@ -5,9 +5,6 @@ EmployeeTimeLog::Application.routes.draw do
     end
   end
 
-  resources :datelogs
-  resources :timelogs
-
 # post "/employees/employee_id/datelogs/datelog_id"
 
   get "home/index"
