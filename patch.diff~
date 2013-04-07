@@ -1,0 +1,239 @@
+diff --git a/app/controllers/timelogs_controller.rb b/app/controllers/timelogs_controller.rb
+index cf3cedd..1849e65 100644
+--- a/app/controllers/timelogs_controller.rb
++++ b/app/controllers/timelogs_controller.rb
+@@ -1,44 +1,35 @@
+ class TimelogsController < ApplicationController
+ 
+-before_filter :get_employee_and_datelog
+-
+-#def new
+-#    @employee = Employee.find(params[:employee_id])
+-#    @datelog = @employee.datelogs(params[:datelog_id])
+-#    @timelog = @datelog.timelogs.new(params[:timelog])
+-#     if @timelog.save
+-#      respond_with @datelog, :location => employee_datelog_timelog_path(@employee, @datelog)
+-#    else
+-#      render "new"
+-#    end
+-#  end
+-
+-def create
+-  @datelog=Datelog.find(params[:datelog_id])
+-  @employee=@datelog(params[:employee_id])
+-  @timelog = @employee.datelog.timelogs.create(params[:timelog])
+-  @timelog.datelog_id=:datelog_id
+-  @timelog.employee_id=:employee_id
+-  if @timelog.save
+-      redirect_to @employee
++  before_filter :get_employee_and_datelog
++
++  def new
++    @timelog = @datelog.timelogs.build
++  end
++
++  def create
++    @timelog = @datelog.timelogs.create(params[:timelog])
++
++    if @timelog.save
++      redirect_to employee_datelog_path(@employee, @datelog)
+     else
+       render "new"
+     end
+   end
+ 
+-def show
++  def show
+     @timelog = Timelog.find(params[:id])
+     respond_to do |format|
+       format.html # show.html.erb
+       format.json { render :json => @timelog }
+     end
+-end
++  end
+ 
+-def destroy
++  def destroy
+     @datelog = Datelog.find(params[:datelog_id])
+     @timelog = @datelog.timelogs.find(params[:id])
+     @timelog.destroy
+     redirect_to employee_datelog_path(@employee, @datelog)
++  end
+ 
+  def get_employee_and_datelog
+     @employee = Employee.find(params[:employee_id])
+diff --git a/app/models/timelog.rb b/app/models/timelog.rb
+index 82a1921..18b35a9 100644
+--- a/app/models/timelog.rb
++++ b/app/models/timelog.rb
+@@ -1,4 +1,6 @@
+ class Timelog < ActiveRecord::Base
+   belongs_to :datelog
+   attr_accessible :altcatid, :description, :hourlog, :type
++
++  self.inheritance_column = :_type_disabled
+ end
+diff --git a/app/views/datelogs/_form.html.erb b/app/views/datelogs/_form.html.erb
+index efe908b..05459c4 100644
+--- a/app/views/datelogs/_form.html.erb
++++ b/app/views/datelogs/_form.html.erb
+@@ -1,4 +1,3 @@
+-<% @datelog.timelogs.build %>
+ <%= form_for([:employee, @datelog]) do |f| %>
+   <% if @datelog.errors.any? %>
+     <div id="error_explanation">
+@@ -17,10 +16,13 @@
+     <%= f.date_select :daylog %>
+   </div>
+ 
+-  <h2>Timelog</h2>
+-  <%= render :partial => 'timelogs/form' %>
++  <h2>Timelogs</h2>
+ 
++  <%= render @datelog.timelogs %>
+ 
++  <%- if @datelog.persisted? %>
++    <%= link_to 'Add Timelog', new_employee_datelog_timelog_url(@datelog.employee, @datelog) %>
++  <%- end %>
+ 
+   <div class="actions">
+     <%= f.submit %>
+diff --git a/app/views/datelogs/edit.html.erb b/app/views/datelogs/edit.html.erb
+index 2bb75f7..7acef80 100644
+--- a/app/views/datelogs/edit.html.erb
++++ b/app/views/datelogs/edit.html.erb
+@@ -2,5 +2,5 @@
+ 
+ <%= render 'form' %>
+ 
+-<%= link_to 'Show', employee_datelog(@employee, @datelog) %> |
+-<%= link_to 'Back', employee_datelogs_path(@employee) %>
++<%= link_to 'Show', employee_datelogs_path(@datelog.employee, @datelog) %> |
++<%= link_to 'Back', employee_datelogs_path(@datelog.employee) %>
+diff --git a/app/views/datelogs/index.html.erb b/app/views/datelogs/index.html.erb
+index e53da4a..4884b22 100644
+--- a/app/views/datelogs/index.html.erb
++++ b/app/views/datelogs/index.html.erb
+@@ -1,22 +1,15 @@
+ <h1>Listing datelogs</h1>
+ 
+-<table>
+-  <tr>
+-    <th>Date</th>
+-    <th></th>
+-    <th></th>
+-  </tr>
+-
+-
+-
+-<% @datelogs.each do |datelog| %>
+-<%= render datelog.timelogs %>
+-  <tr>
+-    <td><%= datelog.daylog %></td>
+-    <td><%= link_to 'Edit Datelog', edit_employee_datelog_path(:employee, :datelog) %></td>
++<%- @datelogs.each do |datelog| %>
++  <div>
++    <h2><%= datelog.daylog %></h2>
++    Timelogs
++    <p><%= render datelog.timelogs %></p>
++
++    <%= link_to 'Edit Datelog', edit_employee_datelog_path(@employee, datelog) %>
++  </div>
+ <% end %>
+-</table>
+-
+-<br />
+ 
+-<%= link_to 'Back to Employee', employee_path(@employee) %>
++<div>
++  <%= link_to 'Back to Employee', employee_path(@employee) %>
++</div>
+diff --git a/app/views/datelogs/show.html.erb b/app/views/datelogs/show.html.erb
+index 7cc0fe2..b46c2bc 100644
+--- a/app/views/datelogs/show.html.erb
++++ b/app/views/datelogs/show.html.erb
+@@ -1,36 +1,7 @@
+-<table>
+-  <tr>
+-    <th>Date</th>
+-  </tr>
+-
+-  <tr>
+-    <td><%= @datelog.daylog %></td>
+-  </tr>
+-  <tr>
+-    <td><%= @datelog.employee_id %></td>
+-  </tr>
+-
+-
+-</table>
+-
++<h1><%= @datelog.daylog %></h1>
+ <h2>Time Logged by Date</h2>
+-<% render @datelog.timelogs %>
+-
+-<h2>Log for a particular date:</h2>
+-<%= form_for([@employee, @datelog.timelogs.build], :url =>employee_datelog_timelogs_path) do |f| %>
+-  <div class="field">
+-    <%= f.label :type %>
+-    <%= f.select :type, [['General Development ',1], ['Dev Review',2], ['General','General'], ['Travel','Travel'], ['Meeting','Meeting'], ['Billable Customer Dev','Billable Customer Dev'],['Debugging','Debugging'], ['Lunch','Lunch'], ["'Honestly I don't know'","'Honestly I don't know'"], ['Reddit','Reddit']] %><br />
+-  </div>
+ 
+-  <div class="field">
+-    <%= f.label :description %><br />
+-    <%= f.text_area :description %>
+-  </div>
+-  <div class="actions">
+-    <%= f.submit %>
+-  </div>
+-<% end %>
++<%= render @datelog.timelogs %>
+ 
+ <br />
+ 
+diff --git a/app/views/timelogs/_form.html.erb b/app/views/timelogs/_form.html.erb
+index d39b0b5..084df03 100644
+--- a/app/views/timelogs/_form.html.erb
++++ b/app/views/timelogs/_form.html.erb
+@@ -1,4 +1,4 @@
+-<%= form_for([@employee, @datelog.timelogs.build], :url =>employee_datelogs_path) do |f| %>
++<%= form_for([@employee, @datelog, @datelog.timelogs.build]) do |f| %>
+   <div class="field">
+     <%= f.label :type %>
+     <%= f.select :type, [['General Development',1], ['Dev Review',2], ['General','General'], ['Travel','Travel'], ['Meeting','Meeting'], ['Billable Customer Dev','Billable Customer Dev'],['Debugging','Debugging'], ['Lunch','Lunch'], ["'Honestly I don't know'","'Honestly I don't know'"], ['Reddit','Reddit']] %><br />
+@@ -8,6 +8,12 @@
+     <%= f.label :description %><br />
+     <%= f.text_area :description %>
+   </div>
++
++  <div class="field">
++    <%= f.label :hourlog %><br />
++    <%= f.number_field :hourlog %>
++  </div>
++
+   <div class="actions">
+     <%= f.submit %>
+   </div>
+diff --git a/app/views/timelogs/new.html.erb b/app/views/timelogs/new.html.erb
+new file mode 100644
+index 0000000..3241f1e
+--- /dev/null
++++ b/app/views/timelogs/new.html.erb
+@@ -0,0 +1,5 @@
++<h1>New Timelog</h1>
++
++<%= render 'form' %>
++
++<%= link_to 'Back', employee_path(@employee) %>
+diff --git a/config/routes.rb b/config/routes.rb
+index b461047..43769c8 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -5,9 +5,6 @@ EmployeeTimeLog::Application.routes.draw do
+     end
+   end
+ 
+-  resources :datelogs
+-  resources :timelogs
+-
+
