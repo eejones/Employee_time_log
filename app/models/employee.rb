@@ -22,7 +22,6 @@ has_secure_password
 before_save { |employee| employee.email = email.downcase }
 before_save :create_remember_token
 
-  validates :admin, :presence => true
   validates :altid, :presence => true,
                     :length => { :maximum => 5 } 
   validates :name, :presence => true

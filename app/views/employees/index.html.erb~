@@ -16,13 +16,10 @@
     <th align="left">Name</th>
     <th align="left">Title</th>
     <th></th>
-    <th align="left">Code</th>
-    <th></th>
     <th align="left">Tot Time</th>
     <th></th>
     <th align="left">Altid</th>
     <th align="left">Division</th>
-    <th align="left">Creation</th>
     <th align="left">Admin</th>
     <th></th>
     <th></th>
@@ -33,10 +30,7 @@
    <COL width="25">
    <COL width="40">
    <COL width="25">
-   <COL width="40">
-   <COL width="25">
    <COL width="50">
-   <COL width="100">
    <COL width="100">
    <COL width="50">
    <COL width="0*">
@@ -47,13 +41,10 @@
     <td><%= employee.name %></td>
     <td><%= employee.title %></td>
     <td></td>
-    <td><%= employee.code %></td>
-    <td></td>
     <td><%= employee.timelogs.sum('hourlog') %></td>
     <td></td>
     <td><%= employee.altid %></td>
     <td><%= employee.division_id %></td>
-    <td><%= employee.creation %></td>
     <td><%= employee.admin %></td>
     <td><%= link_to 'Log Time', employee %></td>
     <td><%= link_to 'Edit Employee', edit_employee_path(employee) %></td>

@@ -26,8 +26,7 @@
       <%= f.label :email %><br />
       <%= f.text_field :email %>
 
-      <%= f.label :admin %><br />
-      <%= f.text_field :admin %>
+      <%= f.label :admin %><%= f.check_box(:admin, :size=>5) %><br /><br />
 
       <%= f.submit "Create User Record", :class=> "btn btn-large btn-primary" %>
     <% end %>
