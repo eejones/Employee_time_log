@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130316205020) do
+ActiveRecord::Schema.define(:version => 20130409012020) do
 
   create_table "datelogs", :force => true do |t|
     t.date     "daylog"
@@ -26,14 +27,17 @@ ActiveRecord::Schema.define(:version => 20130316205020) do
   create_table "employees", :force => true do |t|
     t.string   "name"
     t.string   "title"
-    t.string   "code"
     t.integer  "tottime"
     t.integer  "altid"
     t.integer  "division_id"
     t.datetime "creation"
-    t.binary   "admin"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.boolean  "admin"
+    t.string   "password_digest"
+    t.string   "email"
+    t.string   "remember_token"
+    t.string   "password"
   end
 
   create_table "timelogs", :force => true do |t|

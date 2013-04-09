@@ -1,3 +1,14 @@
+<% provide(:title, @employee.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @employee %>
+        <%= @employee.name %>
+      </h1>
+    </section>
+  </aside>
+</div>
 <p id="notice"><%= notice %></p>
 
 <table>
@@ -8,7 +19,7 @@
     <th></th>
     <th align="left">Code</th>
     <th></th>
-    <th align="left">Tot Time</th>
+    <th align="left">Total Time</th>
     <th></th>
     <th align="left">Altid</th>
     <th align="left">Division</th>

@@ -1,10 +1,14 @@
 class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
+
+  before_filter :signed_in_employee, :only=>[:index, :edit, :update, :destroy]
+  before_filter :correct_employee, :only=> [:edit, :update]
+  before_filter :admin_employee, :only=> :destroy
+
   def index
     @employees = Employee.all
-
-    respond_to do |format|
+      respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @employees }
     end
@@ -41,9 +45,10 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     @employee = Employee.new(params[:employee])
-
     respond_to do |format|
       if @employee.save
+        sign_in @employee
+        flash[:success] = "Welcome back!"
         format.html { redirect_to @employee, :notice => 'Employee was successfully created.' }
         format.json { render :json => @employee, :status => :created, :location => @employee }
       else
@@ -60,6 +65,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.update_attributes(params[:employee])
+        sign_in @employee
         format.html { redirect_to @employee, :notice => 'Employee was successfully updated.' }
         format.json { head :no_content }
       else
@@ -74,10 +80,28 @@ class EmployeesController < ApplicationController
   def destroy
     @employee = Employee.find(params[:id])
     @employee.destroy
-
     respond_to do |format|
       format.html { redirect_to employees_url }
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def signed_in_employee
+      unless signed_in?
+        store_location
+        redirect_to signin_url, :notice=> "Please sign in."
+      end
+    end
+
+    def correct_employee
+      @employee = Employee.find(params[:id])
+      redirect_to(root_path) unless current_employee?(@employee)
+    end
+
+    def admin_employee
+      redirect_to(root_path) unless current_employee.admin?
+    end
+
 end

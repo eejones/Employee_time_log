@@ -1,16 +1,46 @@
-class Employee < ActiveRecord::Base
-  attr_accessible :admin, :altid, :code, :creation, :division_id, :name, :title, :tottime
+# == Schema Information
+#
+# Table name: employees
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  title       :string(255)
+#  code        :string(255)
+#  tottime     :integer
+#  altid       :integer
+#  division_id :integer
+#  creation    :datetime
+#  admin       :binary
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 
+class Employee < ActiveRecord::Base
+  attr_accessible :admin, :altid, :code, :creation, :division_id, :name, :title, :password, :password_digest, :tottime, :email, :password_confirmation
+has_secure_password
 
   validates :admin, :presence => true
   validates :altid, :presence => true,
                     :length => { :maximum => 5 } 
-  validates :code, :presence => true,
-                   :length => { :minimum => 6 }
   validates :creation, :presence => true
   validates :name, :presence => true
   validates :title, :presence => true
+  validates :password, :presence=> true, :length=> { :minimum=> 6 }
+  validates :password_confirmation, :presence=> true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, :presence=> true, :format=>{:with=> VALID_EMAIL_REGEX}
 
   has_many :datelogs, :dependent => :destroy
   has_many :timelogs, :through => :datelogs
+
+  accepts_nested_attributes_for :datelogs, :allow_destroy => true
+
+  private
+
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
+
+
+
 end

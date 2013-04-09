@@ -5,6 +5,15 @@ EmployeeTimeLog::Application.routes.draw do
     end
   end
 
+  resources :sessions, :only => [:new, :create, :destroy]
+
+  match '/signup',  :to=> 'employees#new'
+  match '/signin',  :to=> 'sessions#new'
+  match '/signout', :to=> 'sessions#destroy', :via=> :delete
+
+  match '/help',    :to=> 'home#help'
+  match '/about',   :to=> 'home#about'
+  match '/contact', :to=> 'home#contact'
 # post "/employees/employee_id/datelogs/datelog_id"
 
   get "home/index"

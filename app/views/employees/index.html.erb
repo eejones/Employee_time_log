@@ -1,4 +1,15 @@
+<% provide(:title, 'All employees') %>
 <h1>Listing employees</h1>
+
+<ul class="employees">
+  <% @employees.each do |employee| %>
+    <li>
+      <%= gravatar_for employee, size: 52 %>
+      <%= link_to employee.name, employee %>
+    </li>
+  <% end %>
+</ul>
+
 
 <table>
 
