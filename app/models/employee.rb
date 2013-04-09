@@ -19,6 +19,9 @@ class Employee < ActiveRecord::Base
   attr_accessible :admin, :altid, :code, :creation, :division_id, :name, :title, :password, :password_digest, :tottime, :email, :password_confirmation
 has_secure_password
 
+before_save { |employee| employee.email = email.downcase }
+before_save :create_remember_token
+
   validates :admin, :presence => true
   validates :altid, :presence => true,
                     :length => { :maximum => 5 } 
@@ -39,7 +42,6 @@ has_secure_password
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
-
 
 
 end

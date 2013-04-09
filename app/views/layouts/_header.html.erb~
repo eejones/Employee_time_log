@@ -3,11 +3,18 @@
         <div class="container">
           <%= link_to("Employee Log", root_path, {:id=> "logo"}) %>
           <nav>
+            <ul class="nav pull-left">
+            <% if signed_in? and current_user[:id].is_i? %>
+              <li><%= link_to "Employee name goes here", employee_path %></li>
+            <% else %>
+              Not Signed In
+            <% end %>
+            </ul>
             <ul class="nav pull-right">
               <li><%= link_to "Home", root_path %></li>
               <li><%= link_to "Help", help_path %></li>
               <% if signed_in? %>
-                <li><%= link_to "Employees", '#' %></li>
+                <li><%= link_to "Employees", employees_path %></li>
                 <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     Employee <b class="caret"></b>
