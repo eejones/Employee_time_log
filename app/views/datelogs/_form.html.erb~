@@ -13,12 +13,16 @@
 
   <div class="field">
     <%= f.label :daylog, "Date" %><br />
-    <%= f.date_select :daylog %>
+    <%= f.date_select :daylog, :size=>"25x25") %>
   </div>
 
   <h2>Timelogs</h2>
-  <%= render :partial => 'timelogs/form' %>
 
+  <%= render @datelog.timelogs %>
+ 
+  <%- if @datelog.persisted? %>
+    <%= link_to 'Add Timelog', new_employee_datelog_timelog_url(@datelog.employee, @datelog) %>
+  <%- end %>
 
 
   <div class="actions">

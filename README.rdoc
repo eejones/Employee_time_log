@@ -1,1 +1,3 @@
 This application lets different employees log time for work using a number of different activity types by date and employee. It will calculate total time per day so that it can be easily evaluated.
+
+This program also assumes that you are have ruby version 1.9 or higher

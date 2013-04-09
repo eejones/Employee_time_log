@@ -67,7 +67,7 @@ div {
   width: 450px;
   border: 2px #FF0000;
   padding: 7px;
-  padding-bottom: 7px;
+  padding-bottom: 100px;
   margin-bottom: 20px;
   background-color: #FF0000;
   h2 {

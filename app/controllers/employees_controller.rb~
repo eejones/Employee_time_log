@@ -53,7 +53,7 @@ class EmployeesController < ApplicationController
         format.json { render :json => @employee, :status => :created, :location => @employee }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @employee.errors, :status => :unprocessable_entity }
+        format.json { render :json => @employee.errors, :color=>"#000000", :status => :unprocessable_entity }
       end
     end
   end
@@ -98,6 +98,10 @@ class EmployeesController < ApplicationController
     def correct_employee
       @employee = Employee.find(params[:id])
       redirect_to(root_path) unless current_employee?(@employee)
+    end
+
+    def admin_employee
+      redirect_to(root_path) unless current_employee.admin?
     end
 
 end
