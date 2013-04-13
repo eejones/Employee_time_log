@@ -1,0 +1,5 @@
+- provide(:title, 'Help')
+%h1 Help
+%p.ericcolor
+  Good luck getting help, but you can look for details on this app at Eric's github -
+  %a{:href=>"https://github.com/eejones", :class=>"ericcolor"} Github account for Eric Jones

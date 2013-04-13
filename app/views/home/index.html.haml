@@ -1,0 +1,10 @@
+%div{:class=>"center hero-unit"}
+  %h1 Logging Time
+  %h2
+    This is the home page for logging time
+    %a{:href=>"https://github.com/eejones/Employee_time_log" }Employee Time Log
+    Eric E Jones
+  = link_to "Sign up now!", signup_path, :class=> "btn btn-large btn-primary"
+%br/
+= link_to image_tag("genericcompany.png", :alt=> "Rails"), 'http://en.wikipedia.org/wiki/Business_opportunity'
+= link_to "Employee Time Entry", employees_path

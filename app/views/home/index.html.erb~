@@ -8,7 +8,6 @@
   <%= link_to "Sign up now!", signup_path, :class=> "btn btn-large btn-primary" %>
 </div>
 
-<%= link_to image_tag("genericcompany.png", :alt=> "Rails"), '<Your Company Name Here>' %>
+<%= link_to image_tag("genericcompany.png", :alt=> "Rails"), 'http://en.wikipedia.org/wiki/Business_opportunity' %>
 
 <%= link_to "Employee Time Entry", employees_path %>
-

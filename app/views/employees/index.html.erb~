@@ -44,7 +44,7 @@
     <td><%= employee.timelogs.sum('hourlog') %></td>
     <td></td>
     <td><%= employee.altid %></td>
-    <td><%= employee.remember_token %></td>
+    <td><%= employee.division_id %></td>
     <td><%= employee.admin %></td>
     <td><%= link_to 'Log Time', employee %></td>
     <td><%= link_to 'Edit Employee', edit_employee_path(employee) %></td>

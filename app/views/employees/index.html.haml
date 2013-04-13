@@ -1,0 +1,48 @@
+- provide(:title, 'All employees')
+%h1 Listing employees
+%br/
+%ul.employees
+  - @employees.each do |employee|
+    %li= link_to employee.name, employee
+%br/
+%table{:style=>"background-color:#FFD700"}
+  %tr
+    %th{:align=>"left"} Name
+    %th{:align=>"left"} Title
+    %th
+    %th{:align=>"left"} Tot Time
+    %th
+    %th{:align=>"left"} Altid
+    %th{:align=>"left"} Division
+    %th{:align=>"left"} Admin
+    %th
+    %th
+    %th
+  %COLGROUP
+    %COL{:width=>"100"}
+    %COL{:width=>"50"}
+    %COL{:width=>"25"}
+    %COL{:width=>"40"}
+    %COL{:width=>"25"}
+    %COL{:width=>"50"}
+    %COL{:width=>"100"}
+    %COL{:width=>"50"}
+    %COL{:width=>"75"}
+    %COL{:width=>"100"}
+    %COL{:width=>"200"}
+    - @employees.each do |employee|
+      %tr.employees
+        %td
+          %li= link_to employee.name, employee
+        %td= employee.title
+        %td
+        %td= employee.timelogs.sum('hourlog')
+        %td
+        %td= employee.altid
+        %td= employee.division_id
+        %td= employee.admin
+        %td= link_to 'Log Time', employee
+        %td= link_to 'Edit Employee', edit_employee_path(employee)
+        %td= link_to 'Remove Employee Record', employee, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%br/
+%li= link_to 'Add a New Employee', new_employee_path

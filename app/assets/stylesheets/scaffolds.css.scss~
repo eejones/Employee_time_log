@@ -106,6 +106,7 @@ p {
   line-height: 1.7em;
 }
 
+
 /* header */
 
 #logo {
@@ -120,6 +121,7 @@ p {
   line-height: 1;
   &:hover {
     color: #660000;
+    background-color: $white;
     text-decoration: none;
   }
 }
@@ -133,9 +135,9 @@ footer {
   border-top: 1px solid #eaeaea;
   color: $graydark;
   a {
-    color: #555;
+    color: $black;
     &:hover { 
-    color: #222;
+    color: $white;
     }
   }
   small {
@@ -270,3 +272,23 @@ input {
     }
   }
 }
+
+/* ericclasses */
+
+.ericclass
+  a {
+    color: $reddish;
+    font-weight: bold;
+    &:visited {
+    color: $graydark;
+    }
+    &:hover {
+      color: $white;
+      background-color: $reddish;
+    }
+  }
+.erictable
+  th{
+    text-align: left;
+    color: $reddish;
+  }
