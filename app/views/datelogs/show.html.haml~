@@ -1,0 +1,7 @@
+%h1= @datelog.daylog
+%h2 Time Logged by Date
+= render @datelog.timelogs
+%br/
+%div.timeformat
+  = link_to 'Add Timelog', new_employee_datelog_timelog_url(@datelog.employee, @datelog)
+= link_to 'Back', employee_datelogs_path

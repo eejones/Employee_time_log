@@ -1,0 +1,31 @@
+= form_for([:employee, @datelog]) do |f|
+  - if @datelog.errors.any?
+    %div{:id=>"error_explanation"}
+      %h2
+        = pluralize(@datelog.errors.count, "error")
+        prohibited this datelog from being saved:
+      %ul
+        - @datelog.errors.full_messages.each do |msg|
+          %li= msg
+  %div{:class=>"datelabels"}
+    = f.label :daylog, "Date"
+    %br/
+    = f.date_select :daylog
+  %div{:class=>"timeformat"}
+    %h2.timeformat
+      Timelogs
+    = render @datelog.timelogs
+    %br/
+    %br/
+    %div{:class=>"timeformat"}
+      - if @datelog.persisted?
+        = link_to 'Add Timelog', new_employee_datelog_timelog_url(@datelog.employee, @datelog)
+  %br/
+  %br/
+  %div{:class=>"actions"}
+    = f.submit
+= link_to 'Show', employee_datelogs_path(@datelog.employee, @datelog)
+%br/
+= link_to 'Back', employee_datelogs_path(@datelog.employee)
+
+

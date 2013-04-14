@@ -8,7 +8,6 @@
     <p><%= render datelog.timelogs %></p>
 
     <%= link_to 'Edit Datelog', edit_employee_datelog_path(@employee, datelog) %>
-    <%= link_to 'Remove Datelog Record', @employee.datelog, :method => :delete, :data => { :confirm => 'Are you sure?' } %>
 
   </div>
 

@@ -1,0 +1,8 @@
+%p
+  %b Date:
+  = datelog.daylog
+%p
+  %b Time logged:
+  = datelog.timelogs.sum('hourlog')
+%p
+  = link_to 'Remove Date',[datelog.employee, datelog], :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,9 @@
+%h1 Listing datelogs
+- @datelogs.each do |datelog|
+  %div.dateformat
+    %h2= datelog.daylog
+    Timelogs: 
+    %p= render datelog.timelogs
+    = link_to 'Add to/Edit Datelog', edit_employee_datelog_path(@employee, datelog)
+%div
+  = link_to 'Back to Employee', employee_path(@employee)

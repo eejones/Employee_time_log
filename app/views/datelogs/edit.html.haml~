@@ -1,0 +1,6 @@
+= render 'form'
+= link_to 'Show', employee_datelogs_path(@datelog.employee, @datelog)
+%br/
+= link_to 'Back', employee_datelogs_path(@datelog.employee)
+
+

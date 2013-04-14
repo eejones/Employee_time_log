@@ -52,6 +52,19 @@ class DatelogsController < ApplicationController
     @datelog = Datelog.find(params[:id])
   end
 
+  def update
+    @datelog = Datelog.find(params[:id])
+    respond_to do |format|
+      if @datelog.update_attributes(params[:datelog])
+        format.html { redirect_to employee_datelogs_path(@datelog.employee_id), :notice => 'Datelog was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @datelog.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
  def destroy
     @employee = Employee.find(params[:employee_id])
     @datelog = Datelog.find(params[:id])
