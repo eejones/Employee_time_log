@@ -1,0 +1,12 @@
+%div.timelogstyle
+  %table
+    %COLGROUP
+      %COL{:width=>"75"}
+      %COL{:width=>"50"}
+      %COL{:width=>"300"}
+      %COL{:width=>"100"}
+    %tr
+      %td=timelog.type
+      %td=timelog.hourlog
+      %td=timelog.description
+      %td= link_to 'Remove Entry',[employee.datelog, timelog], :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,10 @@
+= form_for([@employee, @datelog, @datelog.timelogs.build]) do |f|
+  %div.newtimelogstyle
+    = f.label :type
+    = f.select :type, [['General Development','"General Dev'], ['Dev Review','Dev Review'], ['General','General'], ['Travel','Travel'], ['Meeting','Meeting'], ['Billable Customer Dev','Billable Customer Dev'],['Debugging','Debugging'], ['Lunch','Lunch'], ["'Honestly I don't know'","'Honestly I don't know'"], ['Reddit','Reddit']]
+    = f.label :description
+    = f.text_field :description
+    = f.label :hourlog
+    = f.select :hourlog, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10],[11,11],[12,12]]
+  %div.actions
+    = f.submit

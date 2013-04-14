@@ -1,0 +1,6 @@
+%table
+  %tr
+    %th Time
+  %tr
+    %td= @timelog.type
+

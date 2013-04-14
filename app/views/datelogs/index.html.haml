@@ -1,8 +1,17 @@
 %h1 Listing datelogs
 - @datelogs.each do |datelog|
-  %div
+  %div.timelogstyle
     %h2= datelog.daylog
     Timelogs: 
+    %table
+      %colgroup
+        %col{:width=>"75"}
+        %col{:width=>"50"}
+        %col{:width=>"200"}
+      %tr
+        %th Type
+        %th Hours
+        %th Description
     %p= render datelog.timelogs
     = link_to 'Add to/Edit Datelog', edit_employee_datelog_path(@employee, datelog)
 %div
