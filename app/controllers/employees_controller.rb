@@ -103,5 +103,4 @@ class EmployeesController < ApplicationController
     def admin_employee
       redirect_to(root_path) unless current_employee.admin?
     end
-
 end

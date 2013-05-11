@@ -1,5 +1,19 @@
 %h1= @datelog.daylog
-%h2 Time Logged by Date
+%h2
+  Time Logged by Date
+  %br/
+  (Total Hours:
+  = @datelog.timelogs.sum('hourlog')
+  )
+%table
+  %colgroup
+    %COL{:width=>"100"}
+    %COL{:width=>"75"}
+    %COL{:width=>"300"}
+  %tr
+    %th Type
+    %th Hours
+    %th Description
 = render @datelog.timelogs
 %br/
 %div.timeformat

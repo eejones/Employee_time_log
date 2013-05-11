@@ -1,4 +1,4 @@
-%div{:class=>"center hero-unit"}
+%div{:class=>"page-header"}
   %h1 Logging Time
   %h2
     This is the home page for logging time
@@ -7,4 +7,5 @@
   = link_to "Sign up now!", signup_path, :class=> "btn btn-large btn-primary"
 %br/
 = link_to image_tag("genericcompany.png", :alt=> "Rails"), 'http://en.wikipedia.org/wiki/Business_opportunity'
+%br/
 = link_to "Employee Time Entry", employees_path

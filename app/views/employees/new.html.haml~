@@ -3,7 +3,6 @@
 %div.row
   %div.span6.offset3
     = form_for(@employee) do |f|
-      = render 'shared/error_messages'
       = f.label :name
       = f.text_field :name
       = f.label :title
@@ -20,5 +19,7 @@
       = f.text_field :email
       = f.label :admin
       = f.check_box(:admin, :size=>5)
+      %br/
+      %br/
       = f.submit "Create User Record", :class=> "btn btn-large btn-primary"
 %li= link_to 'Back', employees_path

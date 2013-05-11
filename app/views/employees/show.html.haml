@@ -36,8 +36,8 @@
     %td= @employee.division_id
     %td= @employee.admin
     %td= link_to 'Edit Employee', edit_employee_path(@employee)
-
-
+%br/
+%br/
 %h2 Time Logged by Date
 = render @employee.datelogs
 = link_to 'Add New Datelog', new_employee_datelog_path(@employee,@datelog)

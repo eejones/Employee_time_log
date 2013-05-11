@@ -14,7 +14,6 @@ EmployeeTimeLog::Application.routes.draw do
   match '/help',    :to=> 'home#help'
   match '/about',   :to=> 'home#about'
   match '/contact', :to=> 'home#contact'
-# post "/employees/employee_id/datelogs/datelog_id"
 
   get "home/index"
 

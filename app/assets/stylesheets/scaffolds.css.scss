@@ -369,6 +369,15 @@ input {
     color: $black;
   }
 }
+.timeloggerstyle{
+  td{
+    font-size: 1.0em;
+    text-align: center;
+    letter-spacing: -1px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+}
 .newtimelogstyle{
   label {
     font-size: 2.0em;

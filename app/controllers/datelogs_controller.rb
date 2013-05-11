@@ -1,9 +1,5 @@
 class DatelogsController < ApplicationController
-#  def create
-#    @employee = Employee.find(params[:employee_id])
-#    @datelog = @employee.datelog.create(params[:datelog])
-#    redirect_to datelog_path(@datelog)
-#  end
+
   def new
     @employee = Employee.find(params[:employee_id])
     @datelog = @employee.datelogs.new(params[:datelog])

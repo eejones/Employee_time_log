@@ -10,7 +10,6 @@ module SessionsHelper
   end
 
   def current_employee=(employee)
-    # 'self.current_employee = ...' is automatically converted to 'current_employee=(...)'
     @current_employee=employee
   end
 

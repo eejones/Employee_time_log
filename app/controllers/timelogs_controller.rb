@@ -1,18 +1,6 @@
 class TimelogsController < ApplicationController
 
   before_filter :get_employee_and_datelog
-#def new
-#    @employee = Employee.find(params[:employee_id])
-#    @datelog = @employee.datelogs(params[:datelog_id])
-#    @timelog = @datelog.timelogs.new(params[:timelog])
-#     if @timelog.save
-#      respond_with @datelog, :location => employee_datelog_timelog_path(@employee, @datelog)
-#    else
-#      render "new"
-#    end
-#  end
-
-
 
   def new
     @timelog = @datelog.timelogs.build
